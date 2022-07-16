@@ -1,0 +1,3 @@
+#pragma once
+
+#define IAMGE_OUTPUT_DIR std::string("@IAMGE_OUTPUT_DIR@")
