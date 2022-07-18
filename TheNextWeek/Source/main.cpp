@@ -283,7 +283,7 @@ int main() {
     auto vfov = 40.0;
     auto aperture = 0.0;
 
-    switch (2) {
+    switch (0) {
     case 1:
         world = random_scene();
         background = color(0.70, 0.80, 1.00);
@@ -378,9 +378,10 @@ int main() {
     uint8_t* ptr = data;
 #endif
 
+    static int reminds = 0;
+
     for (int j = image_height - 1; j >= 0; --j)
     {
-        //std::cerr << "\rScanlines remaining: " << j << ' ' << std::flush;
 
         auto render_func = [&](int line, int width, uint8_t* p)
         {
@@ -397,6 +398,10 @@ int main() {
                 write_color(p, pixel_color, samples_per_pixel);
                 p += 3;
             }
+
+            reminds += 1;
+            
+            fprintf(stdout, "\rScanlines remaining: %d ", image_height - reminds);
         };
 
         auto p = ptr;
